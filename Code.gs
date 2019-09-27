@@ -19,11 +19,17 @@ function moveToBeginning() {
 // select sheet number (correct for zero-based array) and move to front
 function moveBefore() {
   var targetIndex = getTargetIndex();
+  if(targetIndex == -1) {
+    return;
+  }
   ss.moveActiveSheet(targetIndex - 1);
 }
 
 function moveAfter() {
   var targetIndex = getTargetIndex();
+  if(targetIndex == -1) {
+    return;
+  }
   ss.moveActiveSheet(targetIndex);
 }
 
@@ -34,7 +40,7 @@ function getTargetIndex(){
   
   if(!target){
     app.alert("Sheet not found!");
-    return;
+    return -1;
   }
   
   return target.getIndex();
